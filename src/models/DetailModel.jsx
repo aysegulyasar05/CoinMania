@@ -1,9 +1,8 @@
-import {SiCoinmarketcap} from 'react-icons/si';
+import { SiCoinmarketcap } from "react-icons/si";
 import { MdEventAvailable } from "react-icons/md";
 import { MdPriceChange } from "react-icons/md";
-import { RiStockFill} from "react-icons/ri";
+import { RiStockFill } from "react-icons/ri";
 import { FaPercent } from "react-icons/fa";
-
 
 export class DetailModel {
   constructor(coin, history) {
@@ -12,38 +11,41 @@ export class DetailModel {
     this.infoFields = [
       {
         icon: <SiCoinmarketcap />,
-        label: 'Market Capacity',
+        label: "Market Capacity",
         value: this.coin?.marketCapUsd,
       },
       {
         icon: <MdEventAvailable />,
-        label: 'Supply',
+        label: "Supply",
         value: this.coin?.supply,
       },
       {
         icon: <MdPriceChange />,
-        label: 'Price',
+        label: "Price",
         value: this.coin?.priceUsd,
       },
       {
         icon: <FaPercent />,
-        label: '24Hr Change (%)',
+        label: "24Hr Change (%)",
         value: this.coin?.changePercent24Hr,
       },
       {
         icon: <RiStockFill />,
-        label: '24Hr Volume',
+        label: "24Hr Volume",
         value: this.coin?.volumeUsd24Hr,
       },
     ];
-
-  }}
-
-  
-
-
-
-
-
-
-
+    // grafik kütüpjanesinin istediği veri formatı
+    this.chartData = {
+      labels: history?.map((i) => new Date(i.date).toLocaleDateString()),
+      datasets: [
+        {
+          label: "Price1",
+          data: history?.map((i) => i.priceUsd),
+          borderColor: "purple",
+          backgroundColor: "yellow",
+        },
+      ],
+    };
+  }
+}

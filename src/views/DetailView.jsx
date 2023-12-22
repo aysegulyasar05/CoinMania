@@ -1,9 +1,8 @@
 import millify from "millify";
-
-
+import { Chart as Chartjs } from "chart.js/auto";
+import { Bar, Line } from "react-chartjs-2";
 
 const DetailView = ({ model }) => {
- 
   return (
     <div>
       <h3 className="text-center">
@@ -27,7 +26,8 @@ const DetailView = ({ model }) => {
         </section>
         {/* istatistikler */}
         <section className="col-md-9">
-         
+          <Line data={model?.chartData} />
+          <Bar data={model?.chartData} />
         </section>
       </div>
     </div>
